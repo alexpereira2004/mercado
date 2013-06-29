@@ -1,0 +1,20 @@
+﻿olá {firstname} {lastname},
+
+Sua compra #{id_order} foi recebida com sucesso, o seu produto será enviado assim que identificarmos seu pagamento.
+
+Lembramos que você escolheu a modalidade de pagamento po cehque, Por favor, envie seu(s) cheques para:
+
+- no total de {total_paid}
+
+- em nome de {cheque_name}
+
+- para {cheque_address}
+
+Se for necessário ler e fazer download da fatura acesse o "Histórico de	compras" ou clicando em sua conta "Minha conta" em nosso site.
+
+Origado por compra na {shop_name}.
+
+{shop_name} - {shop_url}
+
+
+{shop_url}

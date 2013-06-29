@@ -1,0 +1,21 @@
+﻿Olá {firstname} {lastname},
+
+Sua compra #{id_order} foi recebido por nós com sucesso. Seu pedido será enviado assim que o pagamento for recebido e confirmado.
+Lembramos com você escolheu em fazer uma transferência bancária. Envio os dados para:
+
+{bankwire_owner}
+
+{bankwire_details}
+
+{bankwire_address}
+
+O total de sua compra é {total_paid}
+
+Você pode rever ou fazer o download da sua fatura a partir da "Histórico de compra" em sua conta, clicando em "Minha conta" em nosso Site.
+
+Obrigado por efetuar suas compras na{shop_name}.
+
+{shop_name} - {shop_url}
+
+
+{shop_url}

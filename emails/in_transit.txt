@@ -1,0 +1,15 @@
+Olá {firstname} {lastname},
+
+Seu(s) produto(s) esta(m) neste momento em trânsito
+
+Você pode acompanhar seu cliquando no link: {followup}
+
+Se for necessário ler e fazer download da fatura acesse o "Histórico de	compras" ou clicando em sua conta "Minha conta" em nosso site. 
+
+Obrigado por comprar em {shop_name}!
+
+{shop_name} - {shop_url}
+
+
+
+{shop_url}

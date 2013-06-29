@@ -1,0 +1,12 @@
+﻿{firstname} {lastname}, origado pela sua compra na {shop_name}!
+
+Você tem {nbProducts} produto(s) para download.
+
+Esta é uma ligação direta para estes produtos:
+{virtualProducts}
+
+
+Se for necessário ler e fazer download da fatura acesse o "Histórico de	compras" ou clicando em sua conta "Minha conta" em nosso site.
+
+
+{shop_url}

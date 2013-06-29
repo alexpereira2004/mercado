@@ -1,0 +1,37 @@
+﻿	{firstname} {lastname}, obrigado por comprar na {shop_name}!
+		
+	Detalhes da compra
+
+	Compra: {order_name} incluido em {date}
+	Pagamento: {payment}
+	
+	Produtos: {total_products}
+	Descontos: {total_discounts}
+	Envio: {total_shipping}
+	Embalgem para presente: {total_wrapping}
+	Total pago: {total_paid}
+	
+	
+	Envio
+		
+	Transportadora: {carrier}
+	
+	Endereço para entrega:
+	{delivery_firstname} {delivery_lastname}
+	{delivery_address1}
+	{delivery_address2}
+	{delivery_postal_code} {delivery_city}
+	{delivery_country} {delivery state}
+	
+	Endereço da fatura:
+	{invoice_firstname} {invoice_lastname}
+	{invoice_address1}
+	{invoice_address2}
+	{invoice_postal_code} {invoice_city}
+	{invoice_country} {invoice state}
+		
+	Se for necessário ler e fazer download da fatura acesse o "Histórico de	compras" ou clicando em sua conta "Minha conta" em nosso site.
+	
+	Obrigado por comprar na {shop_name}.
+
+	{shop_url}

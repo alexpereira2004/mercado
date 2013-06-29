@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Message from {shop_name}</title>
+</head>
+<body>
+	<table style="font-family:Verdana,sans-serif; font-size:11px; color:#374953; width: 550px;">
+		<tr>
+			<td align="left">
+				<a href="{shop_url}" title="{shop_name}"><img alt="{shop_name}" src="{shop_logo}" style="border:none;" ></a>
+			</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left">Olá <strong style="color:#000000;">{firstname}
+			    {lastname}</strong>, obrigado por comprar na <strong>{shop_name}</strong>.</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left" style="background-color:#000000; color:#FFF; font-size: 12px; font-weight:bold; padding: 0.5em 1em;">Detalhes de seu pedido</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left">
+				Compra: <strong><span style="color:#000000;">{order_name}</span> incluido
+				em	{date}</strong>
+				<br >
+				Forma de Pagamento: <strong>{payment}</strong>
+			</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left">
+				<table style="width:100%; font-family:Verdana,sans-serif; font-size:11px; color:#374953;">
+					<!-- Title -->
+					<tr style="background-color:#B9BABE; text-align:center;">
+						<th style="width:15%; padding: 0.6em 0;">Referência</th>
+						<th>Produto</th>
+						<th style="width:15%; padding: 0.6em 0;">Preço Unitario</th>
+						<th style="width:15%; padding: 0.6em 0;">Quantidade</th>
+						<th style="width:20%; padding: 0.6em 0;">Preço Total</th>
+					</tr>
+					<!-- Products -->
+						{products}
+						{discounts}
+					<!-- Footer: prices -->
+					<tr style="text-align:right;">
+						<td> </td>
+						<td colspan="3" style="background-color:#B9BABE; padding:0.6em 0.4em;">Produtos</td>
+						<td style="background-color:#B9BABE; padding:0.6em 0.4em;">{total_products}</td>
+					</tr>
+					<tr style="text-align:right;">
+						<td> </td>
+						<td colspan="3" style="background-color:#EBECEE; padding:0.6em 0.4em;">Descontos</td>
+						<td style="background-color:#EBECEE; padding:0.6em 0.4em;">{total_discounts}</td>
+					</tr>
+					<tr style="text-align:right;">
+						<td> </td>
+						<td colspan="3" style="background-color:#EBECEE; padding:0.6em 0.4em;">Embalagem para presente</td>
+						<td style="background-color:#EBECEE; padding:0.6em 0.4em;">{total_wrapping}</td>
+					</tr>					
+					<tr style="text-align:right;">
+						<td> </td>
+						<td colspan="3" style="background-color:#DDE2E6; padding:0.6em 0.4em;">Frete</td>
+						<td style="background-color:#DDE2E6; padding:0.6em 0.4em;">{total_shipping}</td>
+					</tr>
+					<tr style="text-align:right; font-weight:bold;">
+						<td> </td>
+						<td colspan="3" style="background-color:#fff; padding:0.6em 0.4em;">Total Pago</td>
+						<td style="background-color:#fff; padding:0.6em 0.4em;">{total_paid}</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left" style="background-color:#000000; color:#FFF; font-size: 12px; font-weight:bold; padding: 0.5em 1em;">Envio</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left">
+				Transportadora: <strong>{carrier}</strong>
+			</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td>
+				<table style="width:100%; font-family:Verdana,sans-serif; font-size:11px; color:#374953;">
+					<tr style="background-color:#B9BABE; text-transform:uppercase;">
+						<th style="text-align:left; padding: 0.3em 1em;">ENDEREÇO
+						  DE ENTREGA</th>
+						<th style="text-align:left; padding: 0.3em 1em;">ENDEREÇO DA FATURA</th>
+					</tr>
+					<tr>
+						<td style="padding:0.5em 0 0.5em 0.5em; background-color:#EBECEE;">
+							<span style="color:#000000; font-weight:bold;">{delivery_firstname} {delivery_lastname}</span>
+							<br>{delivery_address1}
+							<br>{delivery_address2}
+							<br>{delivery_city} {delivery_postal_code}
+							<br>{delivery_country} {delivery_state}
+							<br>{delivery_phone}
+						</td>
+						<td style="padding:0.5em 0 0.5em 0.5em; background-color:#EBECEE;">
+							<span style="color:#000000; font-weight:bold;">{invoice_firstname} {invoice_lastname}</span>
+							<br>{invoice_address1}
+							<br>{invoice_address2}
+							<br>{invoice_city} {invoice_postal_code}
+							<br>{invoice_country} {invoice_state}
+							<br>{invoice_phone}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="left">
+				Se for necessário ler e fazer download da fatura acesse o <a href="{shop_url}history.php" style="color:#000000; font-weight:bold; text-decoration:none;">"Histórico
+				de	compras"</a> ou clicando em sua conta <a href="{shop_url}my-account.php" style="color:#000000; font-weight:bold; text-decoration:none;">"Minha conta"</a> em nosso site.</td>
+		</tr>
+		<tr><td> </td></tr>
+		<tr>
+			<td align="center" style="font-size:10px; border-top: 1px solid #D9DADE;">
+			<a href="{shop_url}" style="color:#000000; font-weight:bold; text-decoration:none;">{shop_name}</a></td>
+	  </tr>
+	</table>
+</body>
+</html>

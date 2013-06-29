@@ -1,0 +1,878 @@
+/* 
+    Document   : base
+    Created on : 28/08/2012, 23:22:33
+    Author     : Alex Lunardelli
+    Description:
+      000    - Preto
+      F2CB3F - Amarelo
+      F1CA3E - Amarelo
+      BF8E65 - Marrom
+      828284 - Cinza
+      B0B0B0 - Cinza
+*/
+
+body {
+  margin:0;
+  padding:0;
+  text-align:left; /* hack para o IE */
+  font-size: 15px;
+  font-family: 'Headland+One', serif;
+  background: #FFF; /* #F7F7F7;*/
+ }
+
+
+img {
+  border:none;
+}
+
+p{
+  font-family:inherit;
+  font-size:inherit;
+  color:inherit;
+  text-indent:5%;
+}
+a,
+.link{
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+a:link,
+a:visited {
+  color: #000;
+}
+a:hover,
+.link:hover{
+  color: #F00;
+}
+
+
+.link-1,
+.link-2 {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link-1{
+  color: #F2CB3F;
+}
+.link-2{
+  color: #FFF;
+}
+
+
+.link-1:hover,
+.link-2:hover{
+  text-decoration: none;
+  color: red;
+}
+
+.titulo{
+  background-image: url('imagens/estrutura/bg-botao-1.png');
+  height: 34px;
+  padding-top: 5px;
+  font-size: 24px;
+  text-indent: 20px;
+  cursor: default;
+  color:#FFFFFF;
+  font-weight:500;
+}
+.titulo-02{
+  height: 34px;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  padding-top: 5px;
+  font-size: 24px;
+  text-indent: 20px;
+  cursor: default;
+  color:#000;
+  font-weight:500;  
+}
+/*************************************************************************************
+
+Classes usadas para posicionamento geral do site
+**************************************************************************************/
+
+
+root {
+    display: block;
+}
+body {
+
+}
+
+html>body #pagina {
+/*
+  width: auto;
+  height: auto;
+*/
+}
+
+#pagina {
+  margin: 0px auto;
+  padding: 0 10px 10px 10px;
+  width: 1004px;
+  min-width: 800px;
+  min-height: 300px;
+  /*height: 100%;*/
+  text-align: left;
+}
+#cabecalho{
+  /*text-align: center;
+  background: red;
+  */
+  width: 100%;
+  height: 235px;
+}
+#cabecalho #interior{
+  margin: 0px auto;
+  padding: 0px;
+}
+#cabecalho #logotipo{
+  height: 165px;
+  margin-left: 20px;
+  float: left;
+}
+#cabecalho #itens {
+  width: 400px;
+  height: 160px;
+  float: right;
+}
+#cabecalho #itens #dados{
+  font-size: 12px;
+  font-weight: bold;
+  float: left;
+}
+#cabecalho #itens #carrinho{
+  background: #F2CB3E;
+  width: 100px;
+  height: 120px;
+  margin: 0 50px 0 0;
+  float: right;
+  text-align: center;
+}
+#cabecalho #itens #vendas{
+  margin-top: 50px;
+  float: left;
+}
+#cabecalho #itens #vendas h2{
+  margin: 0px;
+}
+
+#cabecalho #menu{
+  margin-left: -35px;
+  padding: 0px;
+  width: 1085px;
+  height: 44px;
+  background: #EDEDED; /*#EDEDED;*/
+}
+#cabecalho #menu #links{
+  padding: 0px 0 0 10px;
+  height: 44px;
+}
+#cabecalho #menu #links a{
+  margin-left: 20px;
+}
+#cabecalho #menu #links .pesquisar{
+  font-size: 16px;
+  background-image: url('imagens/estrutura/bg-pesquisar-menu.png');
+  padding: 0 0 0 20px;
+  width: 355px;
+  height: 44px;
+  border: none;
+  margin: 2px -10px 0 80px;
+}
+
+
+
+
+#conteudo{
+  padding: 20px;
+}
+
+#listagem{
+  width: 181px;
+  margin: -55px 0 0 19px;
+  padding: 55px 10px 10px 10px;
+  background: #EDEDED;
+  float: left;
+}
+#listagem h3{
+  border-bottom: 1px ;
+  border-bottom-style: dotted;
+  border-bottom-color: #656363;
+  margin: 10px 0 10px;
+  padding: 5px;
+}
+#listagem ul{
+  margin: 0px;
+  padding: 0 0 0 10px;
+  list-style: none;
+}
+
+#banner-promo{
+  width: 780px;
+  height: 150px;
+  background: violet;
+  float: right;
+}
+
+#vitrine,
+#conteudo,
+#produto{
+  background: #FFF;
+  width: 750px;
+  padding: 10px;
+  min-height: 600px;
+  float: right;
+}
+#vitrine table{
+  width: 760px;
+  font-size: 12px;
+}
+#vitrine table a{
+  font-size: 12px;
+}
+#vitrine table tr td{
+  /*border: 2px solid #000;*/
+  padding: 10px;
+  width: 25%;
+  height: 130px;
+  cursor: pointer;
+}
+
+
+
+#vitrine .itens {
+  color: blue;
+  height: 200px;
+  width: 250px;
+  vertical-align: top;
+  border: 1px solid #FFF;
+}
+#vitrine img,
+.vitrine{
+  margin: 0px ;
+  border: 1px solid #CCC;
+  padding: 5px;
+  width: 140px;
+  height: 120px;
+  background: #e2e2e2;
+  float: left;
+}
+#vitrine .nome-produto{
+  vertical-align: bottom;
+  text-align: center;
+  height: 30px;
+  font-size: 1.0em;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+#vitrine .preco{
+  margin: 0px 20px 0 10px;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 700; 
+  padding: 0px;
+}
+#vitrine .preco .avista {
+  font-size: 1.4em
+}
+#vitrine .preco .prazo{
+  font-size: 0.9em;
+}
+#vitrine ul{
+  display: block; padding: 0px; margin: 0px;
+}
+#vitrine ul li {
+  
+  display: inline; padding: 5px; margin: 0 10px 10px 10px; list-style: none; float:left; width: 152px; height: 220px 
+}
+#vitrine a{
+  text-decoration: none;
+}
+
+.item-hover{
+  width: 152px;
+  background-image: url('imagens/estrutura/250px_03.png');
+  margin:  5px;
+}
+
+
+.animacao-start{
+  display: none;
+}
+
+
+
+#produto .min{
+  font-size: 0.7em;
+  color: #5D5D5D;
+}
+#produto .dados{
+  padding: 5px;
+}
+#produto .dados img {
+
+}
+#produto .dados .imagens{
+  float: left;
+  width: 48%;
+  margin: 5px 5px 5px 10px;
+  border: 1px solid #CCC;
+  padding: 5px;
+  background: #FFF;
+}
+#produto .dados .informacoes{
+  float: right;
+  width: 48%;
+}
+#produto .dados .detalhes{
+  margin: 20px 0 0 0;
+}
+#produto ul {
+  margin: 0; 
+  padding: 0;
+  float: left;
+  list-style: none;
+ 
+}
+#produto ul li{
+  margin: 10px;
+  display: inline;
+}
+
+#produto h2{
+  padding: 0px;
+  margin: 0px;
+}
+.preco-anterior{
+  text-decoration: line-through;
+}
+.preco-destaque{
+  font-family: inherit;
+  font: 31px bold;
+  color: red;
+}
+
+
+
+
+#loading-lazyLoad img{
+  width: 220px;
+  height: 19px;
+  margin: 0 0 0 200px;
+  padding: 0px;
+}
+
+#listagem-secundaria{
+  background: #F54F07;
+  width: 180px;
+  height: 65%;
+  float: right;
+}
+
+#rodape{
+  width: 100%;
+  text-align: center;
+}
+#rodape #interior{
+  margin: 0px auto;
+  padding: 0px;
+}
+#rodape a{
+  color: inherit;
+  font-size: 12px;
+}
+#rodape a:link,
+#rodape a:visited {
+  color: inherit;
+}
+#rodape a:hover{
+  color: red;
+}
+
+.box-01, .box-02{
+  border: 1px solid #CCC;
+  padding: 2px;
+}
+.box-01 .cabecalho, .box-02 .cabecalho{
+  padding: 5px;
+  background: #CCC;
+  font-weight: bold;
+}
+.box-01 .conteudo{
+  padding: 25px 5px 55px 5px;
+}
+.box-02 .conteudo{
+  padding: 5px;
+}
+.box-02 .txt-left{
+  text-align: left;
+}
+.box-02 .txt-right{
+  text-align: right;
+}
+/*******************************************************************************
+Classes usadas no menu
+********************************************************************************/
+
+.sel,
+.selecionado{
+  background:#FF0000;
+  color:#003300;
+  font-size:20px;
+  font-weight:bolder;
+}
+
+  
+.botao1,
+.botao-comprar{
+  background-image: url('imagens/estrutura/bg-botao-1.png');
+  
+  overflow: visible;
+  text-align:center;
+  font-weight:bold;
+  color: #FFF;
+  padding:9px;
+  cursor: pointer;
+  margin: 10px 5px 0;
+}
+.botao-comprar {
+  background-image: url('imagens/estrutura/bg-botao-1.png');
+  overflow: visible;
+  text-align:center;
+  font-weight:bold;
+  color: #FFF;
+  cursor: pointer;
+  margin: 0px 5px 5px 20px;
+  width: 60px;
+  height: 12px;
+  font-size: 12px;
+  padding:5px;
+}
+
+.botao1:link,
+.botao-comprar:link {
+  text-decoration: none;
+  color:#FFF;
+}
+.botao1:visited,
+.botao-comprar:visited {
+  text-decoration: none;
+  color:#FFF;
+}
+.botao1:hover,
+.botao-comprar:hover {
+  background: none repeat scroll 0 0 #CCC;
+  color: #FFF;
+}
+
+
+.botao2{
+  background:url(imagens/Button_d.Png);
+  width:140px;
+  height:25px;
+  position:relative;
+  text-align:center;
+  font-weight:bold;
+  font-size:medium;
+  color:#FFF;
+  padding-top:5px;
+}
+.botao2:link {
+  text-decoration: none;
+  color:#FFF;
+  }
+.botao2:visited {
+  text-decoration: none;
+  color:#FFF;
+  }
+.botao2:hover {
+  background:url(imagens/Button_h.Png);
+  text-decoration: underline;
+  color:#FFF;
+  }
+.menu_flex{
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px;
+  display: none;
+}
+
+/*************************************************************************
+Estilo para uso em imagens
+**************************************************************************/
+
+.centraImg{
+  position:relative;
+  text-align:center;
+}
+/*************************************************************************
+Paragrafos
+**************************************************************************/
+.normal{
+  text-align:center;
+  font-weight:bold;
+  color:#0033CC;
+  font-size:12px;
+}
+
+/***************************************************************************
+	Especiais
+****************************************************************************/
+
+
+.corSim{
+  background: #92F48C;
+  height: 35px;
+  margin: 50px;
+}
+.corNao{
+  background:#E6FDDB;
+  height:35px;
+}
+.corSim:hover, .corNao:hover {
+  background:#5D814B;
+  position:relative;
+}
+
+.limpa{
+  clear:both;
+}
+
+.msg-ok{
+  background: none repeat scroll 0 0 #E5F4E1;
+  border: 1px solid #176C17;
+  border-radius: 2px 2px 2px 2px;
+  color: #176C17;
+  margin-bottom: 5px;
+  padding: 5px 10px 5px;
+}
+.msg-erro{
+  background: none repeat scroll 0 0 #FF8A8A;
+  border: 1px solid #F00;
+  border-radius: 2px 2px 2px 2px;
+  color: #F00;
+  margin-bottom: 5px;
+  padding: 5px 10px 5px;
+}
+
+.msg-atencao{
+  background: none repeat scroll 0 0 #FFDAAC;
+  border: 1px solid #FF8D00;
+  border-radius: 2px 2px 2px 2px;
+  color: #CD7200;
+  margin-bottom: 5px;
+  padding: 5px 10px 5px;
+}
+.msg-vazio{
+  height: 40px;
+}
+.infoheader{
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #000;
+  padding-left: 5px;
+}
+.infovalue{
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.center{
+  text-align: center;
+}
+.margem-interna-padrao{
+  padding: 5px;
+}
+/*******************************************************************************
+    CSS para formulários de edição Geral
+*******************************************************************************/
+.w05 {
+  width: 5%;
+}
+.w10 {
+  width: 10%;
+}
+.w15 {
+  width: 15%;
+}
+.w20 {
+  width: 20%;
+}
+.w25 {
+  width: 25%;
+}
+.w30 {
+  width: 30%;
+}
+.w40 {
+  width: 40%;
+}
+.w50 {
+  width: 50%;
+}
+.w60 {
+  width: 60%;
+}
+.w70 {
+  width: 70%;
+}
+.w80 {
+  width: 80%;
+}
+.w90 {
+  width: 90%;
+}
+.w95 {
+  width: 95%;
+}
+.w98 {
+  width: 98%;
+}
+
+.f90{
+  font-size: 0.9em;
+}
+.f80{
+  font-size: 0.8em;
+}
+.f70{
+  font-size: 0.7em;
+}
+.f60{
+  font-size: 0.6em;
+}
+.f50{
+  font-size: 0.5em;
+}
+
+
+.campo-obrigatorio,
+.obrigatorio {
+  font-size: .8em;
+  color: #CCC;
+}
+select{
+  border: 1px solid #CCC;
+  padding: 5px;
+}
+input, textarea{
+  font-family: inherit;
+  border: 1px solid #CCC;
+  padding: 5px;
+}
+
+
+
+ input[type="submit"],
+.bt_salvar,
+.bt{
+  background-image: url('imagens/estrutura/bg-botao-2.png');
+  border: none;
+  padding: 5px;
+  height: 40px;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+input[type="submit"]:hover,
+.bt_salvar:hover,
+.bt:hover{
+  background: none repeat scroll 0 0 #CCC;
+}
+.bt_img,
+.bt_status{
+  cursor: pointer;
+}
+/*******************************************************************************
+    Sistemas de abas
+*******************************************************************************/
+.botoes_abas{
+  background: #FFF;
+  margin-top: 10px;
+  padding: 5px 0 0 5px;
+}
+.bt_aba {
+  color: #ADADAD;
+  border: none;
+  border-bottom: 0px;
+  cursor: pointer;
+  width: 150px;
+  font-weight: bold;
+  background: #FFF;
+}
+.bt_aba_selecionada{
+  font-size: 16px;
+  color: #000;        
+}
+.abas_esconder{
+  visibility: hidden;
+  display: none;
+}
+.abas_mostrar{
+  visibility: visible;
+  display: block;
+}
+.cont-interno-abas,
+.conteiner-interno-abas{
+  padding: 15px 5px 5px 5px;
+  border-top: #CCC 1px solid;
+  border-left: #CCC 1px solid;
+  border-right: #CCC 1px solid;
+  border-bottom: #CCC 1px solid;
+  min-height: 200px;
+}
+
+
+/*******************************************************************************
+    Tool Tip
+*******************************************************************************/
+.toolTip {
+  color: #6699CC;
+  width: 800px;
+}
+
+
+/*******************************************************************************
+  Site
+*******************************************************************************/
+.banner{
+  text-align:center;
+  /* border: 1px solid #000; */
+  padding: 0px;
+  background: #FFF;
+}
+
+.listagem-blog,
+.listagem-htmlgeral{
+  margin-top: 10px;
+  text-align: left;
+  width: 75%;
+  float: left;
+}
+.listagem-blog h1,
+.listagem-blog h2,
+.listagem-blog h3{
+  margin: 0px;
+  border-bottom: 1px solid #CCC;
+}
+.listagem-blog h3 a{
+  text-decoration: none;
+}
+.listagem-blog .infoheader,
+.listagem-blog .infoheader a{
+  color: #999999;
+  font-size: 0.9em;
+  margin: 1px 0 5px 0;
+}
+.listagem-blog .infoheader a:hover{
+  color: red;
+}
+.listagem-blog  p,
+.listagem-htmlgeral  p{
+  margin: 0 0 10px 10px;
+  text-indent: 0px;
+}
+
+
+
+.conteudo-02{
+  width: 25%;
+  float: left;
+}
+.conteiner{
+  padding: 15px;
+  margin: 5px;
+  text-align: center;
+}
+
+
+/*.box-conteudo-relacionado{
+  margin-top: 10px;
+  text-align: left;
+  padding: 1%;
+  width: 130px;
+  float: left;
+  border: #CCC 1px solid;
+  border-radius: 10px;
+}*/
+.menu,
+.box-conteudo-relacionado{
+  margin: 10px 20px 10px 0;
+  text-align: left;
+  padding: 10px;
+  width: 130px;
+  float: left;
+  border: #CCC 1px solid;
+  border-radius: 10px;
+}
+.menu{  font-size: 16px;
+  font-weight: bold;}
+.menu a{
+  margin-bottom: 30px;
+}
+.menu a:link,
+.menu a:visited {
+  text-decoration: none;
+  color: #1A25FF;
+}
+.menu a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+.centro{
+  text-align: center;
+}
+.margem-interna-padrao{
+  padding: 5px;
+}
+
+.retrato{
+  padding: 2px;
+  border: 6px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+}
+#checkout-passo{
+  margin: 10px 0 15px 0;
+  width: 98%;
+  font-size: 14px;
+  font-weight: bold;
+}
+#checkout-passo tr td{
+  padding: 5px;
+  background-image: url('imagens/estrutura/bg-botao-2.png');
+}
+#checkout-passo tr .sel,
+#checkout-passo tr a{
+  text-decoration: none;
+  color: #FFF;
+}
+#checkout-passo tr a:hover{
+  color: red;
+  text-decoration: underline;
+}
+
+
+/*******************************************************************************
+  Pagseguro
+*******************************************************************************/
+#features .feature .icon {
+    background: url("imagens/estrutura/ico-sprite-pag-seguro.gif") no-repeat scroll left -197px transparent;
+    display: block;
+    float: left;
+    height: 37px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 44px;
+}
+#features .feature dl dt{
+  font-weight: bold;
+}

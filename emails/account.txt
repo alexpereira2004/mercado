@@ -1,0 +1,21 @@
+﻿Olá {firstname} {lastname},
+
+Thank you for creating your account at {shop_name}.
+
+Detalhes de acesso a conta :
+
+Endereço de e-mail: {email}
+Senha: {passwd}
+ 
+Agora você já pode fazer compras em nosso site: {shop_url}
+
+Dicas de Segurança:
+
+* Mantenha as informações da sua conta em segurança.<br>
+* Não revele a suas informações a ninguém.<br>
+* Recomendamos que mude sua senha regularmente.<br>
+* Se você suspeitar que alguém está tentaond ou usando ilegalmente
+* sua conta, por favor, informe-nos imediatamente.
+
+
+{shop_url}

@@ -1,0 +1,9 @@
+Newsletter da {shop_name}
+
+Menssagem
+
+{message}
+
+
+
+{shop_url}

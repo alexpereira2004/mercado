@@ -1,0 +1,59 @@
+
+## Options +FollowSymLinks
+RewriteEngine on
+
+
+## ErrorDocument 404 http://localhost/biblioteca/url/404.html
+RewriteCond %{REQUEST_URI} !^.*(.css|.js|.gif|.png|.jpg|.jpeg)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+RewriteRule ^comum(.+)$        comum/$1  	[NC,L]
+##RewriteRule ^modulosJS(.+)$    modulosJS/$1	[NC,L]
+##RewriteRule ^modulosPHP(.+)$   modulosPHP/$1	[NC,L]
+
+  ##RewriteRule contato[/]?$      contato.php [NC,L]
+  ##RewriteRule cadastro[/]?$     cadastro.php [NC,L]
+
+  RewriteRule blog[/]?$         blog-listagem.php [NC,L]
+  RewriteRule blog/page/(.*)$   blog-listagem.php?n=$1 [NC,L]
+  RewriteRule blog/tag/(.*)$    blog-listagem-tags.php?t=$1 [NC,L]
+  RewriteRule blog/(.*)$        blog-conteudo.php?n=$1 [NC,L]
+
+## HTML Geral
+  ##RewriteRule divulgacao[/]?$   contato.php [NC,L]
+  RewriteRule conteudo[/]?$     contato.php [NC,L]
+  RewriteRule divulgacao[/]?$   contato.php [NC,L]
+  
+  
+  RewriteRule conteudo/(.*)$   htmlgeral.php?n=$1 [NC,L]
+  RewriteRule divulgacao/(.*)$ htmlgeral.php?n=$1 [NC,L]
+  
+  
+## Produtos
+  RewriteRule produtos-detalhe/(.*)$      listar_produtos_det.php?n=$1 [NC,L]
+  RewriteRule categorias-detalhe/(.*)$    listar_categorias.php?n=$1 [NC,L]
+  RewriteRule tags-detalhe/(.*)$          listar_tags.php?n=$1 [NC,L]
+  RewriteRule fabricantes-detalhe/(.*)$   listar_fabricantes.php?n=$1 [NC,L]
+  RewriteRule promocoes/(.*)$             listar_promocoes.php?n=$1 [NC,L]
+  RewriteRule ofertas/(.*)$               listar_promocoes.php?n=$1 [NC,L]
+
+## Outras Páginas
+  RewriteRule contato[/]?$                formulario-contato.php [NC,L]
+  RewriteRule pesquisa[/]?$               formulario-pesquisa-resultado.php [NC,L]
+
+
+## Conta de usuário
+  RewriteRule conta/cadastro[/]?$                  usuario-cadastro.php [NC,L]
+  RewriteRule conta/meus-dados[/]?$                usuario-dados.php [NC,L]
+  RewriteRule conta/meus-pedidos/(.*)$             usuario-pedidos.php?n=$1 [NC,L]
+  RewriteRule conta/alterar-cadastro/(.*)$         usuario-cadastro_edt.php?n=$1 [NC,L]
+  RewriteRule conta/login[/]?$                     usuario-login.php [NC,L]
+  RewriteRule conta/logout[/]?$                    usuario-logout.php [NC,L]
+
+## Checkout / Carrinho
+  RewriteRule checkout/itens[/]?$                    checkout-itens.php [NC,L]
+  RewriteRule checkout/identificacao[/]?$            checkout-identificacao.php [NC,L]
+  RewriteRule checkout/pagamento[/]?$                checkout-pagamento.php [NC,L]
+  RewriteRule checkout/confirmacao[/]?$              checkout-confirmacao.php [NC,L]

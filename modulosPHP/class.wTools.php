@@ -15,7 +15,7 @@ class wTools {
     include 'conecta.php';
     $this->DB_LINK = $link;
     $this->pathImagens = 'imagens/ilustrativas/';
-    $this->sUrlBase = ($_SERVER['SERVER_NAME'] == 'localhost') ? 'http://localhost/Mercadodossabores' : 'http://www.mercadodossabores.com.br/homologa';
+    $this->sUrlBase = ($_SERVER['SERVER_NAME'] == 'localhost') ? 'http://localhost/mercado' : 'http://www.mercadodossabores.com.br/homologa';
   }
 
 

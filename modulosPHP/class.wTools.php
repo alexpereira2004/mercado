@@ -10,6 +10,7 @@ class wTools {
                         'sMsg'       => '',
                         'sMsgErro'   => '');
 
+  public $RETDB = array();
 
   public function __construct() {
     include 'conecta.php';

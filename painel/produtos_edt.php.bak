@@ -265,7 +265,7 @@
               <tr>
                 <td class="infoheader">Preço final (R$):</td>
                 <td>
-                  <input id="CMPvalorFinal" name="CMPvalorFinal" type="text" readonly style="border: none" value="<?php echo $oUtil->parseValue($oProdutos->VL_FINAL[0], 'reais'); ?>" />
+                  <input id="CMPvalorFinal" name="CMPvalorFinal" type="text" readonly style="border: none" value="<?php echo ($oProdutos->VL_FINAL[0] != '' ? $oUtil->parseValue($oProdutos->VL_FINAL[0], 'reais') : 'Não calculado' ) ?>" />
                   <input type="button" class="bt" value="Calcular" onclick="calcularPrecoProduto();" />
                 </td>
               </tr>
@@ -290,27 +290,6 @@
               <tr>
                 <td class="infoheader">Texto explicativo na falta de produto:</td>
                 <td><textarea name="CMPfaltaProduto" rows="4" cols="40"><?php echo $oProdutos->TX_FALTA_PROD[0]; ?></textarea></td>
-              </tr>
-            </table>
-          </fieldset>
-          <fieldset>
-            <legend>Promoções e Descontos</legend>
-            <table>
-              <tr>
-                <td class="infoheader">Definir Desconto:</td>
-                <td>
-                  <?php
-                    $oAdmin->montaSelectDB('CMPdesconto', 'tc_descontos', 'id', 'nm_desconto', $oProdutos->ID_DESCONTO[0], 'CMPdesconto');
-                  ?>
-                </td>
-              </tr>
-              <tr>
-                <td class="infoheader">Definir Promoção:</td>
-                <td>
-                  <?php
-                    $oAdmin->montaSelectDB('CMPpromocao', 'tc_promocoes', 'id', 'nm_promocao', $oProdutos->ID_PROMOCAO[0], 'CMPpromocao');
-                  ?>
-                </td>
               </tr>
             </table>
           </fieldset>

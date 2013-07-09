@@ -285,39 +285,29 @@
               </td>
             </tr>
             <tr>
-              <td colspan="2">
-              <fieldset style="width: 50%">
-                <legend>Definições do Desconto</legend>           
-                <table class="tab_lista_registros">
-                  <tr>
-                    <td class="infoheader" style="width: 160px;">Tipo do Desconto:</td>
-                    <td class="infovalue"><?php echo $oAdmin->montaSelect('CMPdescontos-tipo-desc', $CFGaTiposDesconto, $oDescontos->TP_DESCONTO[0] == '' ? 'T' : $oDescontos->TP_DESCONTO[0], true );?></td>
-                  </tr>
-                  <tr>
-                    <td class="infoheader"><span id="LABcompra-min">Compra mínima:</span></td>
-                    <td class="infovalue">
-                      <input style="border: dotted 1px yellow"  type="text" name="CMPdescontos-min-Q" id="CMPdescontos-min-Q" <?php echo $oDescontos->TP_DESCONTO[0]  == 'Q' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->TP_DESCONTO[0]  == 'Q' ? $oDescontos->VL_MIN[0] : ''; ?>" />
-                      <input style="border: dotted 1px red"     type="text" name="CMPdescontos-min-T" id="CMPdescontos-min-T" <?php echo ($oDescontos->TP_DESCONTO[0] == 'T' || $oDescontos->TP_DESCONTO[0] == '' ) ? '' : 'class="invisivel"'; ?> value="<?php echo  ($oDescontos->TP_DESCONTO[0] == 'T' || $oDescontos->TP_DESCONTO[0] == '' ) ? $oDescontos->VL_MIN[0] : ''; ?>" />
-                      <input style="border: dotted 1px #0086b3" type="text" name="CMPdescontos-min-U" id="CMPdescontos-min-U" <?php echo $oDescontos->TP_DESCONTO[0]  == 'U' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->TP_DESCONTO[0]  == 'U' ? $oDescontos->VL_MIN[0] : ''; ?>" disabled="disabled" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="infoheader">Tipo do Valor:</td>
-                    <td class="infovalue">
-                      <?php echo $oAdmin->montarRadio('CMPdescontos-tipo', $CFGaTiposValoresDesconto, $oDescontos->TP_VALOR[0] == '' ? 'V' : $oDescontos->TP_VALOR[0], false, true, 'radio-tipo-valor' );?>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="infoheader">Valor do desconto:</td>
-                    <td class="infovalue">
-                      <input style="border: dotted 1px yellow"  type="text" name="CMPdescontos-valor-p" id="CMPdescontos-valor-p" <?php echo $oDescontos->TP_VALOR[0]  == 'P' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
-                      <input style="border: dotted 1px red"     type="text" name="CMPdescontos-valor-v" id="CMPdescontos-valor-v" <?php echo ($oDescontos->TP_VALOR[0] == 'V' || $oDescontos->TP_VALOR[0] == '' ) ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
-                      <input style="border: dotted 1px #0086b3" type="text" name="CMPdescontos-valor-i" id="CMPdescontos-valor-i" <?php echo $oDescontos->TP_VALOR[0]  == 'N' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
-                    </td>
-                  </tr>
-                </table>
-              </fieldset>
-                
+              <td class="infoheader" style="width: 160px;">Tipo do Desconto:</td>
+              <td class="infovalue"><?php echo $oAdmin->montaSelect('CMPdescontos-tipo-desc', $CFGaTiposDesconto, $oDescontos->TP_DESCONTO[0] == '' ? 'T' : $oDescontos->TP_DESCONTO[0], true );?></td>
+            </tr>
+            <tr>
+              <td class="infoheader"><span id="LABcompra-min">Compra mínima:</span></td>
+              <td class="infovalue">
+                <input style="border: dotted 1px yellow"  type="text" name="CMPdescontos-min-Q" id="CMPdescontos-min-Q" <?php echo $oDescontos->TP_DESCONTO[0]  == 'Q' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->TP_DESCONTO[0]  == 'Q' ? $oDescontos->VL_MIN[0] : ''; ?>" />
+                <input style="border: dotted 1px red"     type="text" name="CMPdescontos-min-T" id="CMPdescontos-min-T" <?php echo ($oDescontos->TP_DESCONTO[0] == 'T' || $oDescontos->TP_DESCONTO[0] == '' ) ? '' : 'class="invisivel"'; ?> value="<?php echo  ($oDescontos->TP_DESCONTO[0] == 'T' || $oDescontos->TP_DESCONTO[0] == '' ) ? $oDescontos->VL_MIN[0] : ''; ?>" />
+                <input style="border: dotted 1px #0086b3" type="text" name="CMPdescontos-min-U" id="CMPdescontos-min-U" <?php echo $oDescontos->TP_DESCONTO[0]  == 'U' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->TP_DESCONTO[0]  == 'U' ? $oDescontos->VL_MIN[0] : ''; ?>" disabled="disabled" />
+              </td>
+            </tr>
+            <tr>
+              <td class="infoheader">Tipo do Valor:</td>
+              <td class="infovalue">
+                <?php echo $oAdmin->montarRadio('CMPdescontos-tipo', $CFGaTiposValoresDesconto, $oDescontos->TP_VALOR[0] == '' ? 'V' : $oDescontos->TP_VALOR[0], false, true, 'radio-tipo-valor' );?>
+              </td>
+            </tr>
+            <tr>
+              <td class="infoheader">Valor do desconto:</td>
+              <td class="infovalue">
+                <input style="border: dotted 1px yellow"  type="text" name="CMPdescontos-valor-p" id="CMPdescontos-valor-p" <?php echo $oDescontos->TP_VALOR[0]  == 'P' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
+                <input style="border: dotted 1px red"     type="text" name="CMPdescontos-valor-v" id="CMPdescontos-valor-v" <?php echo ($oDescontos->TP_VALOR[0] == 'V' || $oDescontos->TP_VALOR[0] == '' ) ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
+                <input style="border: dotted 1px #0086b3" type="text" name="CMPdescontos-valor-i" id="CMPdescontos-valor-i" <?php echo $oDescontos->TP_VALOR[0]  == 'N' ? '' : 'class="invisivel"'; ?> value="<?php echo $oDescontos->VL_DESCONTO[0]; ?>" />
               </td>
             </tr>
             <tr>

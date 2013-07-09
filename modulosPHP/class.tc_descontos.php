@@ -194,9 +194,8 @@
       return $bSucesso;
     }
 
-    public function remover($iId = '') {
-      $sQuery = "DELETE FROM tc_descontos
-                       WHERE id = ".$iId;
+    public function remover($sFiltro = '') {
+      $sQuery = "DELETE FROM tc_descontos ".$sFiltro;
       $sResultado = mysql_query($sQuery, $this->DB_LINK);
 
       if (!$sResultado) {

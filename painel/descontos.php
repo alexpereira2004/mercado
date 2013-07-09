@@ -9,13 +9,38 @@
   include      '../modulosPHP/config.php';
 
   include_once '../modulosPHP/class.tc_descontos.php';
-  //include_once '../modulosPHP/adapter.descontos.php';
+  include_once '../modulosPHP/class.tr_prod_desconto.php';
+
 
   $oLogin = new usuario_admin();
   $oLogin->validar();
-
-
   $oAdmin = new admin();
+  
+  if (isset ($_POST)) {
+
+    if (isset($_POST['sResultado'])) {
+      $aMsg = $oAdmin->msgRetPost($_POST);
+    }
+
+    if (isset($_POST['sAcao'])) {
+      if ($_POST['sAcao'] == 'remover') {
+        $sFiltro = implode(',', $_POST['CMPaId']);
+        $oManProdRelacionados = new tr_prod_desconto();
+        $sWhere = "WHERE id_desconto IN (".$sFiltro.")";
+        $oManProdRelacionados->remover($sWhere);
+        $aMsg = $oManProdRelacionados->aMsg;
+        
+        if ($oManProdRelacionados->aMsg['iCdMsg'] == 0) {
+          $oManDescontos = new tc_descontos();
+          $sWhere = "WHERE id IN (".$sFiltro.")";
+          $oManDescontos->remover($sWhere);
+          $aMsg = $oManDescontos->aMsg;          
+        }
+        
+      }
+    }
+  }
+
   $oDescontos = new tc_descontos();
   $oDescontos->listar();
 

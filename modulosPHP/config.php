@@ -155,7 +155,7 @@
   $CFGaTiposValores = array('V' => 'Reais',
                             'P' => 'Percentual');
   
-  $CFGaTiposDesconto = array ( 'T' => 'Valor Total da Compra',
+  $CFGaTiposDesconto = array ( //'T' => 'Valor Total da Compra',
                                'Q' => 'Quantidade de itens',
                                'U' => 'Desconto Por Unidade',
                                //'B' => 'Brinde'

@@ -6,7 +6,9 @@
   include_once 'class.tr_prod_cat.php';
   include_once 'class.tr_prod_tag.php';
   include_once 'class.tc_prod_estoque.php';
-
+  include_once 'class.tr_prod_desconto.php';
+  include_once 'class.tr_prod_promocao.php';
+  
   include_once 'class.wTools.php';
   
   require_once 'class.tc_imagens.php';
@@ -48,6 +50,7 @@
     public $VL_FINAL;
     public $CD_VISIVEL;
     
+    // Descontos
     public $ID_DESCONTO;
     public $NM_DESCONTO;
     public $DE_DESCONTO;
@@ -55,6 +58,9 @@
     public $TP_DESCONTO;
     public $VL_MIN;
     public $VL_DESCONTO;
+    
+    // Promoções
+    public $NM_PROMOCAO;
     
     //Categorias
     public $ID_CAT_AGRUPADO;
@@ -72,6 +78,16 @@
     private $iQntItensVitrine;
     public $aProdVitrine;
 
+    // Objetos
+    private $oProduto;
+    private $oMedidas;
+    private $oPrecos;
+    private $oCategorias;
+    private $oTags;
+    private $oEstoque;
+    private $oDesconto;
+    private $oPromocao;
+
     public function __construct() {
   
       include 'conecta.php';
@@ -84,8 +100,8 @@
       $this->oCategorias = new tr_prod_cat();
       $this->oTags       = new tr_prod_tag();
       $this->oEstoque    = new tc_prod_estoque();
-      
-      
+      $this->oDesconto   = new tr_prod_desconto();
+      $this->oPromocao   = new tr_prod_promocao();
     }
 
 
@@ -116,9 +132,7 @@
                           22 => array('Altura'            , $_POST['CMPaltura'],      'float', true),
                           23 => array('Peso em Kg'        , $_POST['CMPpeso'],        'float', true),
                           40 => array('Preço de custo'    , $_POST['CMPprecoCusto'],  'moeda', true, '0'),
-                          45 => array('Preço do final'    , $this->oUtil->parseValue($_POST['CMPvalorFinal'], 'moeda-bd'),  'faixa-baixa', true, '0', 'O <b>Preço Final</b> do produto deve ser calculado! '),
-            
-                          
+                          45 => array('Preço final'       , $this->oUtil->parseValue($_POST['CMPvalorFinal'], 'moeda-bd'),  'faixa-baixa', true, '0', 'O <b>Preço Final</b> do produto deve ser calculado! '),                          
             );
 
         
@@ -272,7 +286,7 @@
         $this->oEstoque->NU_MINIMO[0]           = $this->oUtil->parseValue($aDados['CMPmin'], 'decimal-bd');
         $this->oEstoque->TX_FALTA_PROD[0]       = $aDados['CMPfaltaProduto'];
         $this->oEstoque->CD_VISIVEL_EM_FALTA[0] = isset($aDados['CMPapresentarEmFalta']) ? 'V' : 'I'; // Visível ou Invisivel
-        $this->oEstoque->ID_PROD[0]             = $iIdProd;
+        $this->oEstoque->ID_PROD[0]             = $iIdProd;      
         
 
         /********** Salvar **********/
@@ -283,7 +297,51 @@
         }
 
         if ($this->oEstoque->aMsg['iCdMsg'] != 0) {
-          $this->oEstoque->aMsg['sMsg'] = 'Falha ao tentar salvar dados referntes ao estoque!';
+          $this->oEstoque->aMsg['sMsg'] = 'Falha ao tentar salvar dados referentes ao estoque!';
+          $this->aMsg = $this->oEstoque->aMsg;
+          throw new Exception;
+        }
+        
+        //*********************************************************************
+        //Desconto
+        
+          // Remover tudo
+        if (!$this->oDesconto->remover('WHERE id_prod = '.$iIdProd)) {
+          $this->aMsg = $this->oDesconto->aMsg;
+          throw new Exception;            
+        }
+        
+        $this->oDesconto->ID_PROD[0]            = $iIdProd;
+        $this->oDesconto->ID_DESCONTO[0]        = $this->oUtil->parseValue($aDados['CMPdesconto'], 'decimal-bd');
+        
+
+        /********** Salvar **********/
+        $this->oDesconto->inserir();
+        
+        if ($this->oEstoque->aMsg['iCdMsg'] != 0) {
+          $this->oEstoque->aMsg['sMsg'] = 'Falha ao tentar salvar dados referentes ao desconto!';
+          $this->aMsg = $this->oEstoque->aMsg;
+          throw new Exception;
+        }
+        
+        //*********************************************************************
+        //Promoção
+        
+          // Remover tudo
+        if (!$this->oPromocao->remover('WHERE id_prod = '.$iIdProd)) {
+          $this->aMsg = $this->oPromocao->aMsg;
+          throw new Exception;            
+        }
+        
+        $this->oPromocao->ID_PROD[0]            = $iIdProd;
+        $this->oPromocao->ID_PROMOCAO[0]        = $this->oUtil->parseValue($aDados['CMPpromocao'], 'decimal-bd');
+        
+
+        /********** Salvar **********/
+        $this->oPromocao->inserir();
+        
+        if ($this->oEstoque->aMsg['iCdMsg'] != 0) {
+          $this->oEstoque->aMsg['sMsg'] = 'Falha ao tentar salvar dados referentes ao PROMOCAO!';
           $this->aMsg = $this->oEstoque->aMsg;
           throw new Exception;
         }
@@ -370,6 +428,10 @@
         $this->TP_DESCONTO[$i]    = $aResultado['tp_desconto'];
         $this->VL_MIN[$i]         = $aResultado['vl_min'];
         $this->VL_DESCONTO[$i]    = empty($aResultado['vl_desconto']) ? 0 : $aResultado['vl_desconto'];
+        
+        // Promoções
+        $this->ID_PROMOCAO[$i]    = $aResultado['id_promocao'];
+        $this->NM_PROMOCAO[$i]    = $aResultado['nm_promocao'];
                
         $this->VL_ADICIONAIS_REAL[$i] = $this->oUtil->parseValue($aResultado['vl_adicionais'], 'reais');
         $this->VL_TAXAS_REAL[$i]      = $this->oUtil->parseValue($aResultado['vl_taxas'],      'reais');
@@ -432,6 +494,9 @@
       $this->NU_MINIMO[0]           = (isset($_POST['CMPmin']) ? $_POST['CMPmin'] : '');
       $this->TX_FALTA_PROD[0]       = (isset($_POST['CMPfaltaProduto']) ? $_POST['CMPfaltaProduto'] : '');
       $this->CD_VISIVEL_EM_FALTA[0] = (isset($_POST['CMPapresentarEmFalta']) ? $_POST['CMPapresentarEmFalta'] : '');
+      
+      $this->ID_DESCONTO[0]            = (isset($_POST['CMPdesconto']) ? $_POST['CMPdesconto'] : '');
+      $this->ID_PROMOCAO[0]            = (isset($_POST['CMPpromocao']) ? $_POST['CMPpromocao'] : '');
     }
     
   /* produtos::removerImagem
@@ -531,14 +596,6 @@
     }
     
     public function remover($aId) {
-/*
-      $this->oProduto    = new tc_produtos;
-      $this->oMedidas    = new tc_prod_medidas;
-      $this->oPrecos     = new tc_prod_precos;
-      $this->oCategorias = new tr_prod_cat();
-      $this->oTags       = new tr_prod_tag();
-      $this->oEstoque    = new tc_prod_estoque();
-*/
       try {
         mysql_query("START TRANSACTION", $this->DB_LINK);
 
@@ -551,12 +608,24 @@
           $aIdImagens[] = $aIdImg[0];
         }
 
+        if (!$this->oDesconto->remover('WHERE id_prod IN ('.$sId.')')) {
+          $this->aMsg = $this->oDesconto->aMsg;
+          $this->aMsg['sMsg'] = 'Erro ao tentar excluir dados referentes ao desconto do produto.';
+          throw new Exception;
+        }
+
+        if (!$this->oPromocao->remover('WHERE id_prod IN ('.$sId.')')) {
+          $this->aMsg = $this->oPromocao->aMsg;
+          $this->aMsg['sMsg'] = 'Erro ao tentar excluir dados referentes ao desconto do produto.';
+          throw new Exception;
+        }
+
         if (!$this->oProduto->remover('WHERE id IN ('.$sId.')')) {
           $this->aMsg = $this->oProduto->aMsg;
           $this->aMsg['sMsg'] = 'Erro ao tentar excluir produto.';
           throw new Exception;          
         }
-        
+
         if (!$this->oMedidas->remover('WHERE id_prod IN ('.$sId.')')) {
           $this->aMsg = $this->oMedidas->aMsg;
           $this->aMsg['sMsg'] = 'Erro ao tentar excluir dados referentes às medidas do produto.';

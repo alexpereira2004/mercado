@@ -1370,7 +1370,7 @@ class wTools {
         } else {
           $sCampo = str_replace(',', '', $sCampo);
         }
-
+        
         $sRetCampo = number_format($sCampo,2,",",".");
         //http://leocaseiro.com.br/moedas-decimais-funcao-number_format-php
         break;

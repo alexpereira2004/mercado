@@ -1,4 +1,4 @@
-﻿
+
 DROP VIEW IF EXISTS v_produtos;
 
 CREATE VIEW v_produtos AS 
@@ -47,6 +47,10 @@ SELECT
 	tc_descontos.tp_desconto,
 	tc_descontos.vl_min,
 	tc_descontos.vl_desconto,
+	
+	-- Promocoes
+	tc_promocoes.id AS id_promocao,
+	tc_promocoes.nm_promocao,
 	
 	-- Categoria Principal
 	categoria_principal.cd_status AS cd_status_categoria,
@@ -99,6 +103,8 @@ SELECT
 				  AND (    dt_vigencia_fim > CURDATE()
 					OR dt_vigencia_fim IS NULL)
 			          )
+   LEFT JOIN tr_prod_promocao ON tr_prod_promocao.id_prod = tc_produtos.id
+   LEFT JOIN tc_promocoes     ON tc_promocoes.id = tr_prod_promocao.id_promocao
    
 
    GROUP BY tc_produtos.id,
@@ -141,5 +147,8 @@ SELECT
 		tc_descontos.tp_valor,
 		tc_descontos.tp_desconto,
 		tc_descontos.vl_min,
-		tc_descontos.vl_desconto		
+		tc_descontos.vl_desconto,
+		
+		-- Promocao
+		tc_promocoes.nm_promocao
 		;

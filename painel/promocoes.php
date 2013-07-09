@@ -8,35 +8,43 @@
   include_once '../modulosPHP/adapter.menu.php';
   include      '../modulosPHP/config.php';
 
-  include_once '../modulosPHP/class.tc_clientes.php';
-  include_once '../modulosPHP/adapter.clientes.php';
+  include_once '../modulosPHP/class.promocoes.php';
+  include_once '../modulosPHP/class.tc_promocoes.php';
+  include_once '../modulosPHP/class.tr_prod_promocao.php';
+
 
   $oLogin = new usuario_admin();
   $oLogin->validar();
-
-
   $oAdmin = new admin();
-  //$oMenu = new adapter_tclv_menu();
   
   if (isset ($_POST)) {
-    $aMsg = $oAdmin->msgRetPost($_POST);
+
+    if (isset($_POST['sResultado'])) {
+      $aMsg = $oAdmin->msgRetPost($_POST);
+    }
 
     if (isset($_POST['sAcao'])) {
       if ($_POST['sAcao'] == 'remover') {
-//        $oManClientes = new clientes();
-//        $oManClientes->remover($_POST['CMPaId']);
-//        $aMsg = $oManClientes->aMsg;
-      }
-
-      if ($_POST['sAcao'] == 'pesquisar') {
-
+        $sFiltro = implode(',', $_POST['CMPaId']);
+        $oManProdRelacionados = new tr_prod_promocao();
+        $sWhere = "WHERE id_promocao IN (".$sFiltro.")";
+        $oManProdRelacionados->remover($sWhere);
+        $aMsg = $oManProdRelacionados->aMsg;
+        
+        if ($oManProdRelacionados->aMsg['iCdMsg'] == 0) {
+          $oManPromo = new tc_promocoes();
+          $sWhere = "WHERE id IN (".$sFiltro.")";
+          $oManPromo->remover($sWhere);
+          $aMsg = $oManPromo->aMsg;          
+        }
+        
       }
     }
-
   }
 
-  $oPedidos = new carrinho();
-  $oPedidos->listar("WHERE cd_sit <> 'FI' ORDER BY id DESC");
+  $oPromo = new promocoes();
+  $oPromo->listar();
+
 ?>
 
 
@@ -52,6 +60,9 @@
       $(document).ready(function() {
         $('.dataTable').dataTable({
           "iDisplayLength": 25
+        });
+        $('.remover').click(function(){
+          removerViaCheckBox('Deseja realmente excluir as promoções selecionados?', 'promocoes.php', 'remover');
         });
       });
     </script>
@@ -70,10 +81,40 @@
           //$oAdmin->minheight('600');
         ?>
         <div id="toolBar">
-          <a href="clientes_edt.php?n=novo"><img src="../comum/imagens/icones/add.png" alt="Adicionar" /></a>
+          <a href="promocoes_edt.php"><img src="../comum/imagens/icones/add.png" alt="Adicionar" /></a>
           <span style="margin-left: 5px" class="bt_img remover"><img src="../comum/imagens/icones/cross.png" alt="Remover" /></span>
         </div>
-        
+        <table class="dataTable" style="z-index: 1">
+          <thead>
+            <tr>
+              <td style="width: 15px">&nbsp;</td>
+              <td style="width: 30%">Nome</td>
+              <td style="width: 20%">Desconto Vinculado</td>
+              <td style="width: 20%">De</td>
+              <td style="width: 20%">Até</td>
+            </tr>
+          </thead>
+          <tbody>
+            <input type="hidden" id="iQndReg" value="<?php echo $oPromo->iLinhas; ?>" />
+            <?php
+              if ($oPromo->iLinhas > 0) {
+                for ($i = 0; $i < $oPromo->iLinhas; $i++) {
+                  $bLinha = $i%2 ? true : false; ?>
+                  <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
+                    <td class="multiCheck2">
+                      <input type="checkbox" class="checkRemover" name="CMPremover_<?php echo $oPromo->ID[$i]; ?>" value="<?php echo $oPromo->ID[$i]; ?>" />
+                    </td>
+                    <td><a href="promocoes_edt.php?n=<?php echo $oPromo->ID[$i]; ?>" ><?php echo $oPromo->NM_PROMOCAO[$i]; ?></a></td>
+                    <td><?php echo $oPromo->NM_DESCONTO[$i]; ?></td>
+                    <td><?php echo $oPromo->DT_VIGENCIA_INICIO[$i];?></td>
+                    <td><?php echo $oPromo->DT_VIGENCIA_FIM[$i];?></td>
+                  </tr>
+                  <?php
+                } 
+               } 
+             ?>
+          </tbody>
+        </table>
       </div>
       <div class="limpa"></div>
       <?php

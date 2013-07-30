@@ -103,11 +103,6 @@
                   </tr>
                   <?php
                 }
-              } else { ?>
-                <tr>
-                  <td colspan="3" class="infoValue">Nenhum registro</td>
-                </tr>
-              <?php
               }
             ?>
           </tbody>

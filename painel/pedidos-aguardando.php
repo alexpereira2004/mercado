@@ -75,59 +75,44 @@
         ?>
         <div id="toolBar">
         </div>
-        <?php 
-          if ($oPedidos->iLinhas > 0) { ?>
-
-            <table class="dataTable" style="z-index: 1">
-              <thead>
-                <tr class="header">
-                  <td style="width: 15px">&nbsp;</td>
-                  <td>Cliente</td>
-                  <td>Cód. Carrinho</td>
-                  <td>Cód. Pag Seguro</td>
-                  <td>Data de cadastro</td>
-                  <td>Valor</td>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  if ($oPedidos->iLinhas > 0) {
-                    for ($i = 1; $i <= $oPedidos->iLinhas; $i++) {
-                      $bLinha = $i%2 ? true : false;
-                      ?>
-                      <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
-                        <td class="multiCheck2">
-                          <input type="checkbox" class="checkRemover" name="CMPremover_<?php echo $oPedidos->ID[$i]; ?>" value="<?php echo $oPedidos->ID[$i]; ?>" />
-                        </td>
-                        <td>
-                          <a href="clientes_edt.php?n=<?php echo $oPedidos->ID[$i]; ?>">
-                            <span id="nome_reg_<?php echo $oPedidos->ID[$i]; ?>">
-                              <?php echo $oPedidos->NM_CLIENTE[$i].' '.$oPedidos->NM_SOBRENOME[$i]; ?>
-                            </span>
-                          </a>
-                        </td>
-                        <td><?php echo $oPedidos->CD_CARRINHO[$i]; ?></td>
-                        <td><?php echo $CFGaCodSitPedido[$oPedidos->CD_SIT[$i]]; ?></td>
-                        <td><?php echo $oPedidos->DT_CRIACAO[$i]; ?></td>
-                        <td><?php echo $oAdmin->parseValue($oPedidos->VL_TOTAL[$i], 'reais'); ?></td>
-                      </tr>
-                      <?php
-                    }
-                  } else { ?>
-                    <tr>
-                      <td colspan="3" class="infoValue">Nenhum registro</td>
-                    </tr>
+        <table class="dataTable" style="z-index: 1">
+          <thead>
+            <tr class="header">
+              <td style="width: 15px">&nbsp;</td>
+              <td>Cliente</td>
+              <td>Cód. Carrinho</td>
+              <td>Cód. Pag Seguro</td>
+              <td>Data de cadastro</td>
+              <td>Valor</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if ($oPedidos->iLinhas > 0) {
+                for ($i = 1; $i <= $oPedidos->iLinhas; $i++) {
+                  $bLinha = $i%2 ? true : false;
+                  ?>
+                  <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
+                    <td class="multiCheck2">
+                      <input type="checkbox" class="checkRemover" name="CMPremover_<?php echo $oPedidos->ID[$i]; ?>" value="<?php echo $oPedidos->ID[$i]; ?>" />
+                    </td>
+                    <td>
+                      <a href="clientes_edt.php?n=<?php echo $oPedidos->ID[$i]; ?>">
+                        <span id="nome_reg_<?php echo $oPedidos->ID[$i]; ?>">
+                          <?php echo $oPedidos->NM_CLIENTE[$i].' '.$oPedidos->NM_SOBRENOME[$i]; ?>
+                        </span>
+                      </a>
+                    </td>
+                    <td><?php echo $oPedidos->CD_CARRINHO[$i]; ?></td>
+                    <td><?php echo $CFGaCodSitPedido[$oPedidos->CD_SIT[$i]]; ?></td>
+                    <td><?php echo $oPedidos->DT_CRIACAO[$i]; ?></td>
+                    <td><?php echo $oAdmin->parseValue($oPedidos->VL_TOTAL[$i], 'reais'); ?></td>
+                  </tr>
                   <?php
-                  }
-                ?>
-              </tbody>
-            </table> <?php
-          } else { ?>
-           <div class="corSim" style="font-size: 12px; margin-top: 5px; padding: 5px;font-weight: bold">
-             Nenhum registro
-             <?php echo $oAdmin->minheight('600');?>
-           </div> <?php 
-          } ?>
+                }
+              }?>
+          </tbody>
+        </table>
         <form method="post" id="FRMremover" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <input type="hidden" name="sAcao" value="remover" />
           <input type="hidden" name="CMPid" id="CMPid"  value="" />

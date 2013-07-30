@@ -80,54 +80,44 @@
           <a href="clientes_edt.php?n=novo"><img src="../comum/imagens/icones/add.png" alt="Adicionar" /></a>
           <span style="margin-left: 5px" class="bt_img remover"><img src="../comum/imagens/icones/cross.png" alt="Remover" /></span>
         </div>
-        <?php 
-          if ($oClientes->iLinhas > 0) { ?>
 
-            <table class="dataTable" style="z-index: 1">
-              <thead>
-                <tr class="header">
-                  <td style="width: 15px">&nbsp;</td>
-                  <td>Nome</td>
-                  <td>Situação</td>
-                  <td>Cidade/UF</td>
-                  <td>Data de cadastro</td>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  if ($oClientes->iLinhas > 0) {
-                    for ($i = 0; $i < $oClientes->iLinhas; $i++) {
-                      $bLinha = $i%2 ? true : false;
-                      ?>
-                      <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
-                        <td class="multiCheck2">
-                          <input type="checkbox" class="checkRemover" name="CMPremover_<?php echo $oClientes->oCli->ID[$i]; ?>" value="<?php echo $oClientes->oCli->ID[$i]; ?>" />
-                        </td>
-                        <td>
-                          <a href="clientes_edt.php?n=<?php echo $oClientes->oCli->ID[$i]; ?>">
-                            <span id="nome_reg_<?php echo $oClientes->oCli->ID[$i]; ?>">
-                              <?php echo $oClientes->oCli->NM_CLIENTE[$i]; ?>
-                            </span>
-                          </a>
-                        </td>
-                        <td><?php echo $CFGaSituacao[$oClientes->oCli->CD_STATUS[$i]]; ?></td>
-                        <td><?php echo $oClientes->oEnd->NM_CID[$i].'/'.$oClientes->oEnd->NM_UF[$i]; ?></td>
-                        <td><?php echo $oClientes->oCli->DT_CAD[$i]; ?></td>
-                      </tr>
-                      <?php
-                    }
-                  } else { ?>
-                    <tr>
-                      <td colspan="3" class="infoValue">Nenhum registro</td>
-                    </tr>
+        <table class="dataTable" style="z-index: 1">
+          <thead>
+            <tr class="header">
+              <td style="width: 15px">&nbsp;</td>
+              <td>Nome</td>
+              <td>Situação</td>
+              <td>Cidade/UF</td>
+              <td>Data de cadastro</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if ($oClientes->iLinhas > 0) {
+                for ($i = 0; $i < $oClientes->iLinhas; $i++) {
+                  $bLinha = $i%2 ? true : false;
+                  ?>
+                  <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
+                    <td class="multiCheck2">
+                      <input type="checkbox" class="checkRemover" name="CMPremover_<?php echo $oClientes->oCli->ID[$i]; ?>" value="<?php echo $oClientes->oCli->ID[$i]; ?>" />
+                    </td>
+                    <td>
+                      <a href="clientes_edt.php?n=<?php echo $oClientes->oCli->ID[$i]; ?>">
+                        <span id="nome_reg_<?php echo $oClientes->oCli->ID[$i]; ?>">
+                          <?php echo $oClientes->oCli->NM_CLIENTE[$i]; ?>
+                        </span>
+                      </a>
+                    </td>
+                    <td><?php echo $CFGaSituacao[$oClientes->oCli->CD_STATUS[$i]]; ?></td>
+                    <td><?php echo $oClientes->oEnd->NM_CID[$i].'/'.$oClientes->oEnd->NM_UF[$i]; ?></td>
+                    <td><?php echo $oClientes->oCli->DT_CAD[$i]; ?></td>
+                  </tr>
                   <?php
-                  }
-                ?>
-              </tbody>
-            </table> <?php
-          } else { ?>
-           <div class="corSim" style="font-size: 12px; margin-top: 5px; padding: 5px;font-weight: bold">Nenhum registro</div> <?php 
-          } ?>
+                }
+              }
+            ?>
+          </tbody>
+        </table>
         <form method="post" id="FRMremover" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <input type="hidden" name="sAcao" value="remover" />
           <input type="hidden" name="CMPid" id="CMPid"  value="" />

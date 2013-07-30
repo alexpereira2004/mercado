@@ -15,10 +15,7 @@
   $oLogin = new usuario_admin();
   $oLogin->validar();
 
-
   $oAdmin = new admin();
-
-
 
   if (isset($_POST['sAcao'])) {
     
@@ -26,9 +23,16 @@
       $oManItensVitrine = new tc_vitrine_itens();
       try {
         if (!$oManItensVitrine->remover("WHERE cd_grupo = 'index'")) {
+          $aMsg = $oManItensVitrine->aMsg;      
           throw new Exception;
         }
         
+        if (!isset($_POST['CMPidProd'])) {
+          $aMsg = array('iCdMsg' => 2,
+                          'sMsg' => 'Sem dados selecionados');
+          throw new Exception;
+        }
+
         foreach ($_POST['CMPidProd'] as $iIndice => $iIdProd) {
           if ($iIndice > 15) break;
           $oManItensVitrine->ID_PROD[0]  = $iIdProd;
@@ -37,8 +41,11 @@
           $oManItensVitrine->CD_GRUPO[0] = 'index';
           $oManItensVitrine->inserir();
         }
-      } catch (Exception $exc) { }
-      $aMsg = $oManItensVitrine->aMsg;      
+
+        $aMsg = $oManItensVitrine->aMsg;      
+      } catch (Exception $exc) { 
+        
+      }
     }
     if ($_POST['sAcao'] == 'remover') {
       include_once '../modulosPHP/adapter.produtos.php';
@@ -55,6 +62,7 @@
   $oItensVitrine = new tc_vitrine_itens();
   $oItensVitrine->listar("WHERE cd_grupo = 'index'");
   
+  $aDetItemVitrine = array();
   for ($i = 0; $i < $oItensVitrine->iLinhas; $i++) {
     $aDetItemVitrine[$oItensVitrine->ID_PROD[$i]] = array ( 'id' => $oItensVitrine->ID[$i], 
                                                        'id_prod' => $oItensVitrine->ID_PROD[$i],
@@ -155,22 +163,21 @@
           <span style="margin-left: 5px" class="bt_img remover"><img src="../comum/imagens/icones/cross.png" alt="Remover" /></span>
           <span style="margin-left: 5px" class="bt_img ajustarVitrine"><img src="../comum/imagens/icones/grid.ico" alt="Ajustar Vitrine" /></span>
         </div>
-        <?php
-          if ($oProdutos->iLinhas > 0) { ?>
-            <table class="dataTable" style="z-index: 1">
-              <thead>
-                <tr>
-                  <td style="width: 15px">&nbsp;</td>
-                  <td>Nome</td>
-                  <td>Categoria</td>
-                  <td>Situação</td>
-                  <td>Vitrine</td>
-                  <td>Desconto</td>
-                  <td>Promoção</td>
-                </tr>
-              </thead>
-              <tbody>
-              <?php
+        <table class="dataTable" style="z-index: 1">
+          <thead>
+            <tr>
+              <td style="width: 15px">&nbsp;</td>
+              <td>Nome</td>
+              <td>Categoria</td>
+              <td>Situação</td>
+              <td>Vitrine</td>
+              <td>Desconto</td>
+              <td>Promoção</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if ($oProdutos->iLinhas > 0) {
                 for ($i = 0; $i < $oProdutos->iLinhas; $i++) {
                   $bLinha = $i%2 ? true : false;
                   ?>
@@ -201,14 +208,11 @@
                     <td><?php echo $oProdutos->NM_PROMOCAO[$i]; ?></td>
                   </tr>
                   <?php
-                }?>
-              </tbody>
-            </table>  <?php
-          } else { ?>
-            <div class="corSim" style="font-size: 12px; margin-top: 5px; padding: 5px;font-weight: bold">Nenhum registro</div>
-          <?php
-          }
-        ?>
+                }
+              }
+            ?>
+          </tbody>
+        </table>
       </div>
       <div class="limpa"></div>
       <?php
@@ -236,5 +240,4 @@
       </ul>
     </form>
   </div>
-  
 </html>

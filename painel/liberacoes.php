@@ -77,52 +77,39 @@
           $oAdmin->breadCrumbs();
           //$oAdmin->minheight('600');
         ?>
-        <div id="toolBar">
+        <div id="toolBar"></div>
 
-        </div>
-        <?php 
-          if ($oPedidos->iLinhas > 0) { ?>
-
-            <table class="dataTable" style="z-index: 1">
-              <thead>
-                <tr class="header">
-                  <td style="width: 15px">&nbsp;</td>
-                  <td>Nome</td>
-                  <td>Código</td>
-                  <td>Situação</td>
-                  <td>Data da Compra</td>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  if ($oPedidos->iLinhas > 0) {
-                    for ($i = 1; $i <= $oPedidos->iLinhas; $i++) {
-                      $bLinha = $i%2 ? true : false;
-                      ?>
-                      <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
-                        <td class="multiCheck2">
-                          <a href="liberacoes.php?n=<?php echo $oPedidos->CD_CARRINHO[$i]; ?>&cliente=<?php echo $oPedidos->ID_CLIENTE[$i];?>">Finalizar</a>
-                        </td>
-                        <td><?php echo $oPedidos->NM_CLIENTE[$i]; ?></td>
-                        <td><?php echo $oPedidos->CD_CARRINHO[$i]; ?></td>
-                        <td><?php echo $CFGaCodSitPedido[$oPedidos->CD_SIT[$i]]; ?></td>
-                        <td><?php echo $oPedidos->DT_CRIACAO[$i]; ?></td>
-                      </tr>
-                      <?php
-                    }
-                  } else { ?>
-                    <tr>
-                      <td colspan="3" class="infoValue">Nenhum registro</td>
-                    </tr>
+        <table class="dataTable" style="z-index: 1">
+          <thead>
+            <tr class="header">
+              <td style="width: 15px">&nbsp;</td>
+              <td>Nome</td>
+              <td>Código</td>
+              <td>Situação</td>
+              <td>Data da Compra</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if ($oPedidos->iLinhas > 0) {
+                for ($i = 1; $i <= $oPedidos->iLinhas; $i++) {
+                  $bLinha = $i%2 ? true : false;
+                  ?>
+                  <tr class="<?php echo ($bLinha) ? 'corSim' : 'corNao'; ?>">
+                    <td class="multiCheck2">
+                      <a href="liberacoes.php?n=<?php echo $oPedidos->CD_CARRINHO[$i]; ?>&cliente=<?php echo $oPedidos->ID_CLIENTE[$i];?>">Finalizar</a>
+                    </td>
+                    <td><?php echo $oPedidos->NM_CLIENTE[$i]; ?></td>
+                    <td><?php echo $oPedidos->CD_CARRINHO[$i]; ?></td>
+                    <td><?php echo $CFGaCodSitPedido[$oPedidos->CD_SIT[$i]]; ?></td>
+                    <td><?php echo $oPedidos->DT_CRIACAO[$i]; ?></td>
+                  </tr>
                   <?php
-                  }
-                ?>
-              </tbody>
-            </table> <?php
-          } else { ?>
-           <div class="corSim" style="font-size: 12px; margin-top: 5px; padding: 5px;font-weight: bold">Nenhum registro</div> <?php
-          } 
-          ?>
+                }
+              }
+            ?>
+          </tbody>
+        </table>
       </div>
       <div class="limpa"></div>
       <?php

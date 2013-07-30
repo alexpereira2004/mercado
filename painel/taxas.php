@@ -42,11 +42,11 @@
     ?>
     <script type="text/javascript">
       $(document).ready(function() {
-        if ($('#iQndReg').val() > 0) {
-          $('.dataTable').dataTable({
-            "iDisplayLength": 25
-          });         
-        }
+
+        $('.dataTable').dataTable({
+          "iDisplayLength": 25
+        });
+        
 
         $('.remover').click(function(){
           removerViaCheckBox('Deseja realmente excluir as taxas selecionadas?', 'taxas.php', 'remover');
@@ -73,15 +73,14 @@
         </div>
         <table class="dataTable" style="z-index: 1">
           <thead>
-            <tr>
+            <tr class="header">
               <td style="width: 15px">&nbsp;</td>
-              <td style="width: 50%">Nome</td>
-              <td style="width: 30%">Valor</td>
-              <td style="width: 10%">Status</td>
+              <td>Nome</td>
+              <td>Valor</td>
+              <td>Status</td>
             </tr>
           </thead>
           <tbody>
-            <input type="hidden" id="iQndReg" value="<?php echo $oTaxas->iLinhas; ?>" />
             <?php
               if ($oTaxas->iLinhas > 0) {
                 for ($i = 0; $i < $oTaxas->iLinhas; $i++) {
@@ -99,11 +98,6 @@
                   </tr>
                   <?php
                 }
-              } else { ?>
-                <tr>
-                  <td colspan="3" class="infoValue">Nenhum registro</td>
-                </tr>
-              <?php
               }
             ?>
           </tbody>
